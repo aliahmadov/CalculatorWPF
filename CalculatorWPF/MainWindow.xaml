@@ -345,7 +345,7 @@
                             </Button.BitmapEffect>
                         </Button>
 
-                        <Button Width="75" Height="75"
+                        <Button Click="Operator_Click" Width="75" Height="75"
                             Content="%" FontSize="26"
                          Background="#171717" Foreground="White" 
                             Canvas.Top="0"
@@ -404,6 +404,9 @@
 
 
                         <Button
+                            FontSize="20"
+                            Foreground="White"
+                            Content="Double Click For Exit"
                             MouseDoubleClick="Exit_DoubleClick"
                                 Width="394" Height="35"
                             Background="Transparent"

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,7 +52,7 @@ namespace CalculatorWPF
             {
                 if (!myLabel.Content.ToString().Contains("."))
                 {
-                    myLabel.Content += button.Content.ToString();
+                    myLabel.Content += ".";
                 }
             }
             else
@@ -94,19 +95,19 @@ namespace CalculatorWPF
                     {
                         OperationSign = "*";
                         upLabel.Content += myLabel.Content + "x";
-                        ResultValue = Convert.ToDouble(myLabel.Content);
+                        ResultValue = Convert.ToDouble(myLabel.Content, CultureInfo.InvariantCulture);
                     }
                     else if (button.Name == "div")
                     {
                         OperationSign = "/";
                         upLabel.Content += myLabel.Content + "÷";
-                        ResultValue = Convert.ToDouble(myLabel.Content);
+                        ResultValue = Convert.ToDouble(myLabel.Content, CultureInfo.InvariantCulture);
                     }
                     else
                     {
                         OperationSign = button.Content.ToString();
                         upLabel.Content += myLabel.Content + button.Content.ToString();
-                        ResultValue = Convert.ToDouble(myLabel.Content);
+                        ResultValue = Double.Parse(myLabel.Content.ToString(),CultureInfo.InvariantCulture);
                     }
                 }
             }
@@ -116,6 +117,7 @@ namespace CalculatorWPF
         private void Clear_Click(object sender, RoutedEventArgs e)
         {
             myLabel.Content = "";
+            upLabel.Content = "";
             ResultValue = 0;
         }
 
@@ -134,6 +136,9 @@ namespace CalculatorWPF
                     break;
                 case "/":
                     myLabel.Content = (ResultValue / Convert.ToDouble(myLabel.Content)).ToString();
+                    break;
+                case "%":
+                    myLabel.Content = ((ResultValue/100) * Convert.ToDouble(myLabel.Content)).ToString();
                     break;
                 default:
                     break;
